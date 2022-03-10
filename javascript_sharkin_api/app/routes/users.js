@@ -5,8 +5,8 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const secret = process.env.JWT_TOKEN;
 
-// Colocar um nome mais declarativo pro middleware1, e explicar oq faz
-router.post('/register', function middleware1(req, res, next){
+// Checando se o email é da focus
+router.post('/register', function EmailIsFocus(req, res, next){
   const {email} = req.body;
   var stringtocompare='consultoriafocus.com';
   emailtocompare=email.split('@');
