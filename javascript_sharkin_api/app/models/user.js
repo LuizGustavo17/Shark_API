@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+
+/**
+ * Creating a Sharkin's Users Table
+ */
 let userSchema = new mongoose.Schema({
     name: String,
     email: {
@@ -9,6 +13,10 @@ let userSchema = new mongoose.Schema({
     password: String,
     EmPlantao: Boolean
 });
+
+/**
+ * explicar
+ */
 userSchema.pre('save', function (next) {
     if(this.isNew || this.isModified('password')){
         bcrypt.hash(this.password, 10, (err, hashedPassword)=>{
@@ -22,6 +30,9 @@ userSchema.pre('save', function (next) {
     }
 });
 
+/**
+ * Verifying Password
+ */
 userSchema.methods.isCorrectPassword = function(password, callback){
     bcrypt.compare(password, this.password, function(err, same){
         if(err){

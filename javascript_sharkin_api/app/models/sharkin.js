@@ -1,4 +1,12 @@
 const mongoose = require('mongoose');
+
+/**
+ * Creating a Sharkin's duty Table
+ * 
+ * @atributte HourSharkin: Time of Checkin
+ * @atributte HourSharkout: Time of Checkout
+ * 
+ */
 let sharkinSchema = new mongoose.Schema({
     HourSharkin: {type: Date, default: Date.now},
     HourSharkout: {type: Date},

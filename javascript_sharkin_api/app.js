@@ -6,6 +6,7 @@ var sharkinRouter = require('./app/routes/sharkin');
 require('./config/database');
 var app = express();
 
+// Connecting to routes
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

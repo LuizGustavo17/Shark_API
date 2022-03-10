@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const secret = process.env.JWT_TOKEN;
 
+// Colocar um nome mais declarativo pro middleware1, e explicar oq faz
 router.post('/register', function middleware1(req, res, next){
   const {email} = req.body;
   var stringtocompare='consultoriafocus.com';
@@ -17,6 +18,7 @@ router.post('/register', function middleware1(req, res, next){
   }
 })
 
+// Resgistering a new user
 router.post('/register', async(req, res) =>{
   const {name, email, password, EmPlantao} = req.body;
   const user = new User({name, email, password, EmPlantao});
@@ -29,6 +31,7 @@ router.post('/register', async(req, res) =>{
 
 })
 
+// Logging
 router.post('/login', async(req, res)=>{
   const {email, password} = req.body;
   try{
