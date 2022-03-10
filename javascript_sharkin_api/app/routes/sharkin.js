@@ -5,7 +5,7 @@ const User = require('../models/user');
 const WithAuth = require('../middlewares/auth');
 const TurnInPlantao = require('../middlewares/TurnInPlantao');
 
-
+// Sharkin's Checkin
 router.post('/sharkin', WithAuth, TurnInPlantao, async(req, res) =>{
     try{
         let sharkin = new Sharkin({User_Id:req.user._id, IsComplete:false});
@@ -17,7 +17,7 @@ router.post('/sharkin', WithAuth, TurnInPlantao, async(req, res) =>{
     }
 })
 
-
+// Sharkin's Checkout
 router.put('/sharkout', WithAuth, async(req, res) =>{
     try{
          let docs = await Sharkin.findOneAndUpdate({User_Id:req.user._id, IsComplete:false}, {$set:{IsComplete:true, HourSharkout: Date.now()}}, {returnOriginal:false});
