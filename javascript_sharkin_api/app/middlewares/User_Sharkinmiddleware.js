@@ -5,13 +5,13 @@ const User_Sharkinmiddleware = async (req, res, next)=>{
     await User.find({EmPlantao: true}).exec(function (err, results) {
         var count = results.length;
         if(count>1){
-            res.status(401).json({'error': 'User_Sharkinmiddleware'})
+            res.status(401).json({'error': 'Ja ha pessoas demais no plantao'})
         } else {
             next();
         }
       });
    } catch(error){
-    res.status(201).json({"error":"Ja ha pessoas demais no plantao"});
+    res.status(201).json({"error":"User_Sharkinmiddleware"});
    }
 }
 module.exports = User_Sharkinmiddleware;

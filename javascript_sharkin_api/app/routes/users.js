@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const User = require('../models/user');
+const AllMembers = require('../middlewares/AllMembers');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const secret = process.env.JWT_TOKEN;
@@ -19,7 +20,7 @@ router.post('/register', function EmailIsFocus(req, res, next){
 })
 
 // Resgistering a new user
-router.post('/register', async(req, res) =>{
+router.post('/register', AllMembers, async(req, res) =>{
   const {name, email, password, EmPlantao} = req.body;
   const user = new User({name, email, password, EmPlantao});
   try{

@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const date = new Date();
+let fix =date.setHours(date.getHours()-3);
 
 /**
  * Creating a Sharkin's duty Table
@@ -8,7 +10,7 @@ const mongoose = require('mongoose');
  * 
  */
 let sharkinSchema = new mongoose.Schema({
-    HourSharkin: {type: Date, default: Date.now},
+    HourSharkin: {type: Date, default: fix},
     HourSharkout: {type: Date},
     User_Id:{
         type: mongoose.Schema.Types.ObjectId,
