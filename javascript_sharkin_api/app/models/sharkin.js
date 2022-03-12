@@ -17,7 +17,8 @@ let sharkinSchema = new mongoose.Schema({
         ref:'User',
         required: true,
     },
-    IsComplete: Boolean
+    IsComplete: Boolean,
+    IsValid: Boolean
 })
 
 module.exports = mongoose.model('Sharkin', sharkinSchema)

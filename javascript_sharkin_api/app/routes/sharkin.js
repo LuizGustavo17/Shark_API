@@ -11,7 +11,7 @@ const IsOutPlantao = require('../middlewares/IsOutPlantao');
 // Sharkin's Checkin
 router.post('/sharkin', WithAuth, User_Sharkinmiddleware, IsInPlantao, TurnInPlantao, async(req, res) =>{
     try{
-        let sharkin = new Sharkin({User_Id:req.user._id, IsComplete:false});
+        let sharkin = new Sharkin({User_Id:req.user._id, IsComplete:false, IsValid: false});
         await sharkin.save();
         res.status(200).json(sharkin);
     }

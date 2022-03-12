@@ -8,9 +8,13 @@ var usersRouter = require('./app/routes/users');
 var sharkinRouter = require('./app/routes/sharkin');
 require('./config/database');
 var RevertAll = require('./app/OtherFunctions/RevertAll');
+var MakeAllInvalid = require('./app/OtherFunctions/MakeAllInvalid');
 var app = express();
 const job = nodeSchedule.scheduleJob('0 20 * * *', () => {
     RevertAll();
+    });
+const job2 = nodeSchedule.scheduleJob('0 0 * * SUN', () => {
+    MakeAllInvalid();
     });
 // Connecting to routes
 app.use(logger('dev'));
