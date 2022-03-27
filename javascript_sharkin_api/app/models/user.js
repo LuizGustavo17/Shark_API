@@ -10,6 +10,7 @@ let userSchema = new mongoose.Schema({
         type: String,
         unique: true
       },
+    matricula: String,
     password: String,
     EmPlantao: Boolean
 });
