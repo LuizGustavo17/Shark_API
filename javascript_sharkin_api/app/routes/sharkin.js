@@ -25,7 +25,7 @@ router.put('/sharkout', WithAuth, IsOutPlantao,  TurnOffPlantao, async(req, res)
     const date = new Date();
 let fix =date.setHours(date.getHours()-3);
     try{
-         let docs = await Sharkin.findOneAndUpdate({User_Id:req.user._id, IsComplete:false}, {$set:{IsComplete:true, HourSharkout: fix}}, {returnOriginal:false});
+         let docs = await Sharkin.findOneAndUpdate({User_Id:req.user._id, IsComplete:false}, {$set:{IsComplete:true, HourSharkout: fix, IsValid: true}}, {returnOriginal:false});
         res.status(200).json(docs);
     }
     catch (error) {
@@ -35,7 +35,7 @@ let fix =date.setHours(date.getHours()-3);
 
 router.get('/list', WithAuth, async(req, res) =>{
     try{
-         let docs = await Sharkin.find({IsComplete: true});
+         let docs = await Sharkin.find({IsComplete: true, IsValid:true}).populate('User_Id');
         res.status(200).json(docs);
     }
     catch (error) {
