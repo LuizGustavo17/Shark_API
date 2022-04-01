@@ -21,8 +21,8 @@ router.post('/register', function EmailIsFocus(req, res, next){
 
 // Resgistering a new user
 router.post('/register', AllMembers, async(req, res) =>{
-  const {name, email, password, EmPlantao} = req.body;
-  const user = new User({name, email, password, EmPlantao});
+  const {name, email, password, EmPlantao, matricula} = req.body;
+  const user = new User({name, email, password, EmPlantao, matricula});
   try{
     await user.save();
     res.status(200).json(user);
@@ -45,14 +45,15 @@ router.post('/login', async(req, res)=>{
           res.status(401).json({error:'Incorrect email or password'});
         } else{
           const token = jwt.sign({email}, secret, {expiresIn:'1d'});
-          res.json({user: user, token:token})
+          res.status(200).json({user: user, token:token})
         }
       })
     }
   }
   catch(error){
-    res.status(500).json({error: 'Internal error, try again laterrr'})
+    res.status(500).json({error: 'Internal error, try again later'})
   }
 })
+
 
 module.exports = router;
