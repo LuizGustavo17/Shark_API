@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-
-mongoose.connect('mongodb://localhost/sharkin_databas43', {
+require('dotenv').config();
+const MONGO_URL=process.env.MONGO_URL;
+mongoose.connect(MONGO_URL, {useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true
 }).then(()=>console.log('Connection Succeful')).catch((err)=>console.log(err));
