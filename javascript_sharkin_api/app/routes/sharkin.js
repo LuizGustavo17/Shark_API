@@ -10,8 +10,10 @@ const IsOutPlantao = require('../middlewares/IsOutPlantao');
 
 // Sharkin's Checkin
 router.post('/sharkin', WithAuth, User_Sharkinmiddleware, IsInPlantao, TurnInPlantao, async(req, res) =>{
+    const date = new Date();
+let fix =date.setHours(date.getHours()-3);
     try{
-        let sharkin = new Sharkin({User_Id:req.user._id, IsComplete:false, IsValid: false});
+        let sharkin = new Sharkin({User_Id:req.user._id, IsComplete:false, IsValid: false, HourSharkin:fix});
         await sharkin.save();
         res.status(200).json(sharkin);
     }
